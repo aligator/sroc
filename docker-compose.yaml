@@ -1,0 +1,6 @@
+services:
+  sroc:
+    build: .
+    ports:
+      - "4242:4242"
+    command: "./app -listen=0.0.0.0:4242 -methods=\"GET\" -origin=http://localhost:3000"
