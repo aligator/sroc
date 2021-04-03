@@ -6,7 +6,7 @@ from any external URL.
 
 ## Usage
 If the proxy runs at `https://cors.aligator.dev` then you can call it with 
-`https://cors.aligator.dev/?target=https://cdn.thingiverse.com/assets/7d/fc/6e/33/fe/3DBenchy.stl`
+`https://cors.aligator.dev/?target=https%3A%2F%2Fcdn.thingiverse.com%2Fassets%2F7d%2Ffc%2F6e%2F33%2Ffe%2F3DBenchy.stl`
 and it will just proxy that request and setting the cors headers as needed.
 
 See `--help` for all possible options.
