@@ -75,7 +75,9 @@ func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Setup headers for the request.
 	for n, h := range r.Header {
 		for _, h := range h {
-			req.Header.Add(n, h)
+			if n != "Access-Control-Allow-Origin" && n != "Access-Control-Allow-Credentials" && n != "Access-Control-Allow-Methods" {
+				req.Header.Add(n, h)
+			}
 		}
 	}
 
