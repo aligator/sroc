@@ -75,9 +75,7 @@ func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Setup headers for the request.
 	for n, h := range r.Header {
 		for _, h := range h {
-			if n != "Access-Control-Allow-Origin" && n != "Access-Control-Allow-Credentials" && n != "Access-Control-Allow-Methods" {
-				req.Header.Add(n, h)
-			}
+			req.Header.Add(n, h)
 		}
 	}
 
@@ -98,9 +96,12 @@ func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Copy the response from the server to the connected client request.
 	for h, v := range resp.Header {
 		for _, v := range v {
-			w.Header().Add(h, v)
+			if h != "Access-Control-Allow-Origin" && h != "Access-Control-Allow-Credentials" && h != "Access-Control-Allow-Methods" {
+				w.Header().Add(h, v)
+			}
 		}
 	}
+
 	w.WriteHeader(resp.StatusCode)
 
 	n, err := io.Copy(w, resp.Body)
